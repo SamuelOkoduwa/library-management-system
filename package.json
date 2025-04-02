@@ -13,6 +13,7 @@
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/mongoose": "^5.11.97",
+    "@types/morgan": "^1.9.9",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typecript": "^0.0.1-security"
@@ -21,6 +22,7 @@
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "mongoose": "^8.13.1",
+    "morgan": "^1.10.0",
     "typescript": "^5.8.2"
   }
 }
