@@ -10,6 +10,7 @@ import bookRoute from './modules/books/routes/bookRoute';
 import teachersRoute from './modules/teachers/routes/teachersRoutes';
 import authRoute from './modules/auth/routes/authRoute';
 import { errorHandler } from './middlewares/errorHandler';
+import { setupSwagger } from './config/swagger';
 
 dotenv.config();
 
@@ -39,7 +40,7 @@ app.use('/api/v1/teachers', teachersRoute);
 const server = new ApolloServer({ 
   typeDefs, 
   resolvers,
-  context: ({ req }) => ({ req }) // Optional: for future auth
+  context: ({ req }) => ({ req })
 });
 
 
