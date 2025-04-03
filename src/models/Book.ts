@@ -8,10 +8,23 @@ interface IBook extends Document {
 }
 
 const BookSchema = new Schema<IBook>({
-  title: { type: String, required: true },
-  author: { type: String, required: true },
-  publishedYear: { type: Number, required: true },
-  studentId: { type: Schema.Types.ObjectId, ref: 'Student' } // Optional student reference
+  title: { 
+    type: String, 
+    required: 
+    true 
+  },
+  author: { 
+    type: String, 
+    required: true 
+  },
+  publishedYear: { 
+    type: Number, 
+    required: true 
+  },
+  studentId: { 
+    type: Schema.Types.ObjectId, 
+    ref: 'Student' 
+  }
 });
 
 export const Book = model<IBook>('Book', BookSchema);
