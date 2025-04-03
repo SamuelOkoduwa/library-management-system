@@ -19,6 +19,7 @@ import { Book } from '../../../models/Book';
  *               - title
  *               - author
  *               - publishedYear
+ *               - studentId
  *             properties:
  *               title:
  *                 type: string
