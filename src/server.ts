@@ -1,14 +1,15 @@
 import express, { Application, Request, Response } from 'express';
 import connectDB from './config/db';
 import { ApolloServer } from 'apollo-server-express';
-import { typeDefs } from './schemas/schema';
-import { resolvers } from './resolvers/resolvers';
+import { typeDefs } from './graphql/schemas/schema';
+import { resolvers } from './graphql/resolvers/resolvers';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 
 import bookRoute from './modules/books/routes/bookRoute';
+import teachersRoute from './modules/teachers/routes/teachersRoutes';
+import authRoute from './modules/auth/routes/authRoute';
 import { errorHandler } from './middlewares/errorHandler';
-
 
 dotenv.config();
 
@@ -26,8 +27,12 @@ app.get('/api/v1/', (req: Request, res: Response) => {
   res.send('Library Management System is running!');
 });
 
+
+
 // Book API
 app.use('/api/v1/books', bookRoute);
+app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/teachers', teachersRoute);
 
 
 // Apollo Server (GraphQL)
