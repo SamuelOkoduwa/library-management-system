@@ -3,6 +3,14 @@ import { Teacher } from '../../../models/Teacher';
 
 /**
  * @swagger
+ * tags:
+ *   name: Teachers
+ *   description: Teachers endpoints
+ */
+
+
+/**
+ * @swagger
  * components:
  *   schemas:
  *     Teacher:

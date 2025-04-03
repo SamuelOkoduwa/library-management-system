@@ -10,6 +10,7 @@ import cors from 'cors';
 import bookRoute from './modules/books/routes/bookRoute';
 import teachersRoute from './modules/teachers/routes/teachersRoutes';
 import authRoute from './modules/auth/routes/authRoute';
+
 import { errorHandler } from './middlewares/errorHandler';
 import { setupSwagger } from './config/swagger';
 
