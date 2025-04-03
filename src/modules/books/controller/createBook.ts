@@ -31,37 +31,48 @@ import { Book } from '../../../models/Book';
  *     responses:
  *       201:
  *         description: Book created successfully
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: boolean
- *                 newBook:
- *                   $ref: '#/components/schemas/Book'
  *       400:
- *         description: Invalid input
+ *         description: Book already exists or invalid input
  */
 
-const createBook = async (req: Request, res: Response) => {
+const createBook = async (req: Request, res: Response): Promise<void> => {
 	try {
-	  const { title, author, publishedYear, studentId } = req.body;
-	  const newBook = new Book({ 
-		title, author, publishedYear 
-	});
-	  await newBook.save();
-	  res.status(201).json({
-		status: true,
-		newBook: newBook
-	});
+		const { title, author, publishedYear, studentId } = req.body;
+
+		// Check for existing book with same title and author
+		const existingBook = await Book.findOne({ 
+			title: { $regex: new RegExp(`^${title}$`, 'i') }, // Case-insensitive match
+			author: { $regex: new RegExp(`^${author}$`, 'i') }
+		});
+
+		if (existingBook) {
+			res.status(400).json({
+				status: false,
+				message: 'Book with this title and author already exists'
+			});
+			return;
+		}
+
+		const newBook = new Book({ 
+			title, 
+			author, 
+			publishedYear,
+			studentId
+		});
+		await newBook.save();
+
+		res.status(201).json({
+			status: true,
+			newBook: newBook
+		});
 	} catch (error) {
-	  console.error('Book creation error:', error);
-	  res.status(400).json({ 
-		message: 'Error creating book',
-		error: error instanceof Error ? error.message : 'Unknown error'
-	  });
+		console.error('Book creation error:', error);
+		res.status(400).json({ 
+			status: false,
+			message: 'Error creating book',
+			error: error instanceof Error ? error.message : 'Unknown error'
+		});
 	}
-}
+};
 
 export default createBook;

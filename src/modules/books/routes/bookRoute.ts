@@ -10,7 +10,7 @@ const router = Router();
 
 router.get('/', getAllBooks);
 router.get('/:id', getABook);
-router.post('/', createBook);
+router.post('/create', createBook);
 router.put('/:id', UpdateABook);
 router.delete('/:id', deleteBook);
 

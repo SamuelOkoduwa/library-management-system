@@ -10,12 +10,13 @@ interface IBook extends Document {
 const BookSchema = new Schema<IBook>({
   title: { 
     type: String, 
-    required: 
-    true 
+    required: true,
+    trim: true  // Remove whitespace
   },
   author: { 
     type: String, 
-    required: true 
+    required: true,
+    trim: true
   },
   publishedYear: { 
     type: Number, 
@@ -26,6 +27,9 @@ const BookSchema = new Schema<IBook>({
     ref: 'Student' 
   }
 });
+
+// Create compound index for title and author
+BookSchema.index({ title: 1, author: 1 }, { unique: true });
 
 export const Book = model<IBook>('Book', BookSchema);
 
