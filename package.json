@@ -15,6 +15,7 @@
   "description": "",
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/mongoose": "^5.11.97",
@@ -30,6 +31,7 @@
     "@types/graphql": "^14.5.0",
     "apollo-server-express": "^3.13.0",
     "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.17.1",
     "express-validator": "^7.2.1",

@@ -1,6 +1,6 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import { Express } from 'express';
+import { Application } from 'express';
 
 const options = {
   definition: {
@@ -12,10 +12,10 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:6500/api/v1',
+        url: 'https://library-management-system-mxof.onrender.com/api/v1',
       },
       {
-        url: 'https://library-management-system-mxof.onrender.com/api/v1',
+        url: 'http://localhost:6500/api/v1',
       }
     ],
     components: {
@@ -28,12 +28,14 @@ const options = {
       },
     },
   },
-  // apis: ['./src/routes/*.ts', './src/models/*.ts'],
-  apis: ['./src/modules/books/controller/*.ts', './src/modules/books/teacher/*.ts'], // Include user controller path
+  apis: [
+    './src/modules/**/controller/*.ts',
+    './src/models/*.ts'
+  ],
 };
 
 const specs = swaggerJsdoc(options);
 
-export const setupSwagger = (app: Express) => {
+export const setupSwagger = (app: Application) => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 };
