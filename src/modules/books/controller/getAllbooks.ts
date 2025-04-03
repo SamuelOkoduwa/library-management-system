@@ -11,7 +11,35 @@ import {Book} from '../../../models/Book';
 
 /**
  * @swagger
- * /api/books:
+ * components:
+ *   schemas:
+ *     Book:
+ *       type: object
+ *       required:
+ *         - title
+ *         - author
+ *         - publishedYear
+ *       properties:
+ *         _id:
+ *           type: string
+ *           description: Auto-generated ID
+ *         title:
+ *           type: string
+ *           description: Book title
+ *         author:
+ *           type: string
+ *           description: Book author
+ *         publishedYear:
+ *           type: number
+ *           description: Year of publication
+ *         studentId:
+ *           type: string
+ *           description: ID of student who borrowed the book
+ */
+
+/**
+ * @swagger
+ * /api/v1/books:
  *   get:
  *     summary: Get all books
  *     tags: [Books]
@@ -19,13 +47,22 @@ import {Book} from '../../../models/Book';
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: List of books
+ *         description: List of all books
  *         content:
  *           application/json:
  *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Book'
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: boolean
+ *                 TotalBooks:
+ *                   type: number
+ *                 AllBooks:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Book'
+ *       500:
+ *         description: Server error
  */
 
 const getAllBooks = async (req: Request, res: Response)  => {

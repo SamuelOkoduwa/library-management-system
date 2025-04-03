@@ -10,6 +10,14 @@ const options = {
       version: '1.0.0',
       description: 'API for managing books, students and teachers',
     },
+    servers: [
+      {
+        url: 'http://localhost:6500/api/v1',
+      },
+      {
+        url: 'https://library-management-system-mxof.onrender.com/api/v1',
+      }
+    ],
     components: {
       securitySchemes: {
         bearerAuth: {
@@ -20,7 +28,8 @@ const options = {
       },
     },
   },
-  apis: ['./src/routes/*.ts', './src/models/*.ts'],
+  // apis: ['./src/routes/*.ts', './src/models/*.ts'],
+  apis: ['./src/modules/books/controller/*.ts', './src/modules/books/teacher/*.ts'], // Include user controller path
 };
 
 const specs = swaggerJsdoc(options);
