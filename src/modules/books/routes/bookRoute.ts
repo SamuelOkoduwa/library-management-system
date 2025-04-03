@@ -1,10 +1,17 @@
-import express from 'express';
+import { Router } from 'express';
 import getAllBooks from '../controller/getAllbooks';
 import createBook from '../controller/createBook';
+import { cache } from '../../../middlewares/cache';
+import getABook from '../controller/getABook';
+import UpdateABook from '../controller/updateAbook';
+import deleteBook from '../controller/deleteABook';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/', getAllBooks);
-router.post('/create', createBook);
+router.get('/:id', getABook);
+router.post('/', createBook);
+router.put('/:id', UpdateABook);
+router.delete('/:id', deleteBook);
 
 export default router;

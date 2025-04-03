@@ -3,10 +3,15 @@ import { Book } from '../../../models/Book';
 
 const createBook = async (req: Request, res: Response) => {
 	try {
-	  const { title, author, publishedYear } = req.body;
-	  const newBook = new Book({ title, author, publishedYear });
+	  const { title, author, publishedYear, studentId } = req.body;
+	  const newBook = new Book({ 
+		title, author, publishedYear 
+	});
 	  await newBook.save();
-	  res.status(201).json(newBook);
+	  res.status(201).json({
+		status: true,
+		newBook: newBook
+	});
 	} catch (error) {
 	  console.error('Book creation error:', error);
 	  res.status(400).json({ 
