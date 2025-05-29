@@ -105,7 +105,7 @@ This project is a Library Management System built with Node.js, TypeScript, Grap
 
 ## Deployment
 
-* The Application is configured to be deployed on <a href="[https://library-management-system-mxof.onrender.com/api-docs/#/]" target="_blank">[Render]</a>
+* The Application is configured to be deployed on render and you can view the API documentation by clicking <a href="https://library-management-system-mxof.onrender.com/api-docs/#/" target="_blank">here</a> .
 * Ensure the Render environment variables match the .env variables.
 * The start command on render is `node dist/server.js`.
 * The root directory on render should be the root of the project.
